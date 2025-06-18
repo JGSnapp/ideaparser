@@ -1,0 +1,12 @@
+fastapi
+uvicorn
+SQLAlchemy
+psycopg2-binary
+pydantic
+pytrends
+praw
+langchain
+openai
+redis
+websockets
+apscheduler

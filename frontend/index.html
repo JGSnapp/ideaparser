@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Idea Parser</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+function App() {
+  const [topics, setTopics] = React.useState([]);
+  const [msg, setMsg] = React.useState('');
+
+  React.useEffect(() => {
+    fetch('/topics').then(r => r.json()).then(setTopics);
+  }, []);
+
+  const generateIdeas = () => {
+    fetch('/ideas', {method: 'POST'}).then(() => setMsg('Processing ideas...'));
+  };
+
+  return (
+    <div>
+      <h1>Hot Topics</h1>
+      <ul>{topics.map(t => <li key={t.id}>{t.keyword} ({t.trend_score})</li>)}</ul>
+      <button onClick={generateIdeas}>Generate Ideas</button>
+      <p>{msg}</p>
+    </div>
+  );
+}
+ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+</body>
+</html>
