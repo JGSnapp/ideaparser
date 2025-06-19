@@ -10,3 +10,6 @@ openai
 redis
 websockets
 apscheduler
+tweepy
+requests
+python-dotenv

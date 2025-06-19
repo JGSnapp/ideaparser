@@ -5,6 +5,10 @@ from langchain import LLMChain
 from langchain.prompts import PromptTemplate
 from sqlalchemy.orm import Session
 from .models import IdeaCard, DailyHotTopic
+from .config import OPENAI_API_KEY
+
+if not OPENAI_API_KEY:
+    raise RuntimeError("OPENAI_API_KEY is required for idea generation")
 
 
 def generate_idea_cards(db: Session):
