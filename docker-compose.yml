@@ -10,6 +10,8 @@ services:
     image: redis:alpine
   backend:
     build: ./backend
+    env_file:
+      - .env
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres
     depends_on:
